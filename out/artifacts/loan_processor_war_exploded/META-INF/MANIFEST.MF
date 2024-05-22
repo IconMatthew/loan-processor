@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: jadae
+Build-Jdk: Amazon Corretto version 17.0.10
+Implementation-Title: loan-processor
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: ru.jadae
+Main-Class: ${start-class}
+
