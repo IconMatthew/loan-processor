@@ -14,7 +14,7 @@
     }
 
     .col{
-        height: 350px;
+        height: 430px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -22,6 +22,7 @@
         border-radius: 20px;
         border: 1px solid darkslateblue;
         padding: 10px 50px 50px;
+        background-color: #dadfe8;
     }
 
     input[type="text"], input[type="number"]{
@@ -53,31 +54,47 @@
     input:focus{
         border: 1px solid blue;
     }
+
+    .listElem{
+        display: flex;
+        flex-direction: column
+    }
+
+    label{
+        margin-bottom: 5px;
+        margin-left: 5px;
+    }
 </style>
 
 <div class="wrapper">
     <div class="col">
         <h1>Введите данные для подачи заявления</h1>
-        <div>
-            <input type="text" id="fullName" required>
+
+        <div class="listElem">
+            <label>ФИО:</label>
+            <input type="text" id="fullName" placeholder="Сергеевва Анна Валерьевна" required>
+        </div>
+        <div class="listElem">
+            <label>Серия и номер паспорта:</label>
+            <input type="text" id="idData" placeholder="ssssnnnnnn" required>
         </div>
         <div>
-            <input type="text" id="idData" required>
-        </div>
-        <div>
-            <input type="radio" id="maleOption" name="gender" value="male" required>
+            <input type="radio" id="maleOption" name="gender" value="муж" required>
             <label for="maleOption">Male</label>
-            <input type="radio" id="femaleOption" name="gender" value="female">
+            <input type="radio" id="femaleOption" name="gender" value="жен">
             <label for="femaleOption">Female</label>
         </div>
-        <div>
-            <input type="text" id="address" placeholder="Address" required>
+        <div class="listElem">
+            <label>Адрес:</label>
+            <input type="text" id="address" placeholder="ул. Генерала Штеменко 43" required>
         </div>
-        <div>
-            <input type="text" id="phoneNumber" placeholder="Phone Number" required>
+        <div class="listElem">
+            <label>Телефон:</label>
+            <input type="text" id="phoneNumber" placeholder="+79034685531" required>
         </div>
-        <div>
-            <input type="number" id="loanAmount" placeholder="Loan Amount" min="0" step="0.01" required>
+        <div class="listElem">
+            <label>Сумма кредита:</label>
+            <input type="number" id="loanAmount" placeholder="100000" min="0" step="0.01" required>
         </div>
 
     </div>

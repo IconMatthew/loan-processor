@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-public class MainController {
+public class LoanApplicationController {
 
     @GetMapping("/main-page")
     public String mainPage(@RequestParam(name="name", required=false, defaultValue="me") String name,
@@ -16,9 +16,6 @@ public class MainController {
         return "main-page";
     }
 
-    @GetMapping("/loan-application")
-    public String loanApplication() {
-        return "loan-application";
-    }
+
 
 }
