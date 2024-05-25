@@ -100,7 +100,24 @@
         color: white;
         display: flex;
         flex-direction: row;
-        width: 200px;
+        width: 500px;
+        height: 40px;
+    }
+
+    .lineClass div{
+        padding-right: 3px;
+    }
+
+    .butt{
+        height: 35px;
+        background-color: darkslateblue;
+        border-radius: 10px;
+        color: white;
+        width: 170px;
+    }
+
+    .butt:hover{
+        opacity: 0.9;
     }
 </style>
 
@@ -111,7 +128,7 @@
             <input type="hidden" name="loanContractId" value="{{loanContract.id}}">
             <div class="lineClass">
                 <div>
-                    Срок выплаты кредита:
+                    Срок выплаты кредита (дни):
                 </div>
                 <div>
                     {{loanApplication.term}}
@@ -120,7 +137,7 @@
 
             <div class="lineClass">
                 <div>
-                    Одобренная сумма:
+                    Одобренная сумма (рубли):
                 </div>
                 <div>
                     {{loanApplication.approvedAmount}}
@@ -166,7 +183,7 @@
                     {{client.phoneNumber}}
                 </div>
             </div>
-            <button type="submit">Подписать договор</button>
+            <button class="butt" type="submit">Подписать договор</button>
         </div>
     </div>
 </form>
