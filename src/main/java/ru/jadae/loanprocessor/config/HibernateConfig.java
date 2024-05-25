@@ -1,51 +1,66 @@
 package ru.jadae.loanprocessor.config;
 
+import java.util.Objects;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = "ru.jadae.loanprocessor")
+@PropertySource("classpath:hibernate.properties")
 public class HibernateConfig {
 
-//    @Bean
-//    public LocalSessionFactoryBean sessionFactory() {
-//        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-//        sessionFactory.setDataSource(dataSource());
-//        sessionFactory.setPackagesToScan("com.example.model");
-//        sessionFactory.setHibernateProperties(hibernateProperties());
-//        return sessionFactory;
-//    }
+    private final Environment environment;
+
+    @Autowired
+    public HibernateConfig(Environment environment) {
+        this.environment = environment;
+    }
+
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan("ru.jadae.loanprocessor.entities");
+        sessionFactory.setHibernateProperties(hibernateProperties());
+
+        return sessionFactory;
+    }
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/your_database_name");
-        dataSource.setUsername("your_database_username");
-        dataSource.setPassword("your_database_password");
+        dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("hibernate.driver_class")));
+        dataSource.setUrl(environment.getProperty("hibernate.connection.url"));
+        dataSource.setUsername(environment.getProperty("hibernate.connection.username"));
+        dataSource.setPassword(environment.getProperty("hibernate.connection.password"));
         return dataSource;
     }
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put("hibernate.show_sql", "true");
-        properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.dialect", environment.getProperty("hibernate.dialect.val"));
+        properties.put("hibernate.show_sql", environment.getProperty("hibernate.show_sql.val"));
+        properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto.val"));
         return properties;
     }
 
-//    @Bean
-//    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-//        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-//        transactionManager.setSessionFactory(sessionFactory);
-//        return transactionManager;
-//    }
+    @Bean
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sessionFactory);
+        return transactionManager;
+    }
 }
