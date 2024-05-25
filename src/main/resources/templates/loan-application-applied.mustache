@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Rejected</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+<body>
+
+<style>
+    body{
+        font-family: 'Montserrat', sans-serif;
+        color: darkslateblue;
+        font-weight: 500;
+    }
+
+    .col2{
+        height: 550px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        border: 1px solid darkslateblue;
+        background-color: cornflowerblue;
+    }
+
+    input[type="text"], input[type="number"]{
+        height: 30px;
+        width: 200px;
+        font-size: 14px;
+        border-radius: 10px;
+        border: 1px solid skyblue;
+        padding: 2px 10px;
+        color: black;
+    }
+
+    .wrapper{
+        width: 700px;
+        margin: auto;
+        margin-top: 10%
+    }
+
+    h1{
+        font-size: 25px;
+        color: white;
+    }
+
+    input {
+        outline: none;
+        border: 1px solid black;
+    }
+
+    input:focus{
+        border: 1px solid blue;
+    }
+
+    .listElem{
+        display: flex;
+        flex-direction: column
+    }
+
+    label{
+        margin-bottom: 5px;
+        margin-left: 5px;
+    }
+
+    .listElemLast button{
+        height: 30px;
+        width: 200px;
+        font-size: 14px;
+        border-radius: 10px;
+        border: 1px solid white;
+        color: white;
+        background-color: darkslateblue;
+    }
+
+    a{
+        line-height: 35px;
+        font-weight: 500;
+        color: black;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+    a:hover{
+        color: cornflowerblue;
+    }
+
+    .linker a{
+        padding: 15px;
+    }
+
+    .linker{
+        background-color: white;
+        border-radius: 20px;
+    }
+
+    .lineClass{
+        color: white;
+        display: flex;
+        flex-direction: row;
+        width: 200px;
+    }
+</style>
+
+<form action="/client/loan-contract-signed" method="POST">
+    <div class="wrapper">
+        <div class="col2">
+            <h1>Подпишите договор:</h1>
+            <input type="hidden" name="loanContractId" value="{{loanContract.id}}">
+            <div class="lineClass">
+                <div>
+                    Срок выплаты кредита:
+                </div>
+                <div>
+                    {{loanApplication.term}}
+                </div>
+            </div>
+
+            <div class="lineClass">
+                <div>
+                    Одобренная сумма:
+                </div>
+                <div>
+                    {{loanApplication.approvedAmount}}
+                </div>
+            </div>
+            <div class="lineClass">
+                <div>
+                    ФИО:
+                </div>
+                <div>
+                    {{client.fullName}}
+                </div>
+            </div>
+            <div class="lineClass">
+                <div>
+                    Паспортные данные:
+                </div>
+                <div>
+                    {{client.idData}}
+                </div>
+            </div>
+            <div class="lineClass">
+                <div>
+                    Пол:
+                </div>
+                <div>
+                    {{client.gender}}
+                </div>
+            </div>
+            <div class="lineClass">
+                <div>
+                    Адрес:
+                </div>
+                <div>
+                    {{client.address}}
+                </div>
+            </div>
+            <div class="lineClass">
+                <div>
+                    Телефон:
+                </div>
+                <div>
+                    {{client.phoneNumber}}
+                </div>
+            </div>
+            <button type="submit">Подписать договор</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
