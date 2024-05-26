@@ -15,7 +15,7 @@
     }
 
     .col{
-        height: 550px;
+        height: 650px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -75,46 +75,63 @@
         color: white;
         background-color: darkslateblue;
     }
+    .error{
+        height: 40px;
+        width: 650px;
+        background-color: #a86d7b;
+        color: white;
+        border-radius: 15px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
-<form action="/client/loan-application" method="POST">
+<form action="/loan-application" method="POST">
     <div class="wrapper">
         <div class="col">
             <h1>Введите данные для подачи заявления</h1>
 
+            {{#errors}}
+                <div class="error">{{.}}</div>
+            {{/errors}}
+
             <div class="listElem">
                 <label>ФИО:</label>
-                <input type="text" name="fullName" placeholder="Сергеева Анна Валерьевна" required>
+                <input type="text" name="fullName" placeholder="Сергеева Анна Валерьевна" {{#client.fullName}}value="{{client.fullName}}"{{/client.fullName}} required>
             </div>
             <div class="listElem">
                 <label>Серия и номер паспорта:</label>
-                <input type="text" name="idData" placeholder="ssssnnnnnn" required>
+                <input type="text" name="idData" placeholder="#### ######" {{#client.idData}}value="{{client.idData}}"{{/client.idData}} required>
             </div>
             <div>
-                <input type="radio" id="maleOption" name="gender" value="MALE" required>
+                <label>Гендер:</label>
+                <input type="radio" id="maleOption" name="gender" value="MALE" required {{^isWoman}}checked{{/isWoman}}>
                 <label for="maleOption">Male</label>
-                <input type="radio" id="femaleOption" name="gender" value="FEMALE">
+                <input type="radio" id="femaleOption" name="gender" value="FEMALE" required {{#isWoman}}checked{{/isWoman}}>
                 <label for="femaleOption">Female</label>
             </div>
             <div class="listElem">
-                <label>Адрес:</label>
-                <input type="text" name="address" placeholder="ул. Генерала Штеменко 43" required>
+                <label>Адрес прописки:</label>
+                <input type="text" name="address" placeholder="ул. Генерала Штеменко 43" {{#client.address}}value="{{client.address}}"{{/client.address}} required>
             </div>
             <div class="listElem">
                 <label>Телефон:</label>
-                <input type="text" name="phoneNumber" placeholder="+79034685531" required>
+                <input type="text" name="phoneNumber" placeholder="+79034685531" {{#client.phoneNumber}}value="{{client.phoneNumber}}"{{/client.phoneNumber}} required>
             </div>
             <div class="listElem">
                 <label>Сведения о занятости:</label>
-                <input type="text" name="workingExperience" placeholder="Стаж|должность|организация" required>
+                <input type="text" name="workingExperience" placeholder="Стаж|должность|организация" {{#client.workingExperience}}value="{{client.workingExperience}}"{{/client.workingExperience}} required>
             </div>
             <div class="listElem">
                 <label>Сумма кредита:</label>
-                <input type="number" name="loanAmount" placeholder="100000" min="0" step="0.01" required>
+                <input type="number" name="loanAmount" placeholder="100000" min="0" step="0.01" {{#client.loanAmount}}value="{{client.loanAmount}}"{{/client.loanAmount}} required>
             </div>
             <div class="listElemLast">
                 <button type="submit">Подать заявление</button>
             </div>
+
         </div>
     </div>
 </form>

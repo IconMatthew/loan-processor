@@ -15,7 +15,7 @@
     }
 
     .col1{
-        height: 170px;
+        height: 300px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -75,6 +75,10 @@
         background-color: darkslateblue;
     }
 
+    li{
+        color: white;
+    }
+
     a{
         line-height: 35px;
         font-weight: 500;
@@ -95,21 +99,35 @@
         background-color: white;
         border-radius: 20px;
     }
+    .listCont{
+        display: flex;
+        justify-content: center;
+    }
+    .getLink{
+        color: white;
+    }
+
+    .getLink:hover{
+        color: skyblue;
+    }
 </style>
 
-<form action="/client/loan-application" method="POST">
+
     <div class="wrapper">
         <div class="col1">
             <h1>Выберите нужное действие:</h1>
             <div class="linker">
-                <a class="backToMain" href="loan-application">Подать заявку на кредит</a>
+                <a class="backToMain" href="/loan-application">Подать заявку на кредит</a>
             </div>
-<!--            <div class="linker">-->
-<!--                <a class="backToMain" href="show-all-clients">Посмотреть всех клиентов</a>-->
-<!--            </div>-->
+            <div class="listCont">
+                <ol>
+                    <li><a class="getLink" href="../client/show-all-clients">Посмотреть всех клиентов</a></li>
+                    <li><a class="getLink" href="../loan-application/show-all-applications">Посмотреть все заявки</a></li>
+                    <li><a class="getLink" href="../contract/show-all-signed-contracts">Посмотреть все подписанные договоры</a></li>
+                </ol>
+            </div>
         </div>
     </div>
-</form>
 
 </body>
 </html>
