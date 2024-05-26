@@ -37,8 +37,6 @@ public class LoanContractDAO {
 
     public List<LoanContract> getAllSignedContracts() {
         Session session = sessionFactory.getCurrentSession();
-        return session
-                .createQuery("select l from LoanContract l where l.signatureStatus = true", LoanContract.class)
-                .list();
+        return session.createQuery("select l from LoanContract l join fetch l.loanApplication where l.signatureStatus = true", LoanContract.class).list();
     }
 }

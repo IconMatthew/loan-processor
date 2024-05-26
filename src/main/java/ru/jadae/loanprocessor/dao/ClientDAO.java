@@ -24,7 +24,7 @@ public class ClientDAO {
 
     public List<Client> getAllClients() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("select c from Client c", Client.class).getResultList();
+        return session.createQuery("select c from Client c join fetch c.clientApplications", Client.class).getResultList();
     }
 
     public Client getByIdData(String idData) {

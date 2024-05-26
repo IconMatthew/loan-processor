@@ -24,6 +24,6 @@ public class LoanApplicationDAO {
 
     public List<LoanApplication> getAllApplications() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("select l from LoanApplication l", LoanApplication.class).list();
+        return session.createQuery("select l from LoanApplication l join fetch l.client join fetch l.loanContract", LoanApplication.class).list();
     }
 }
