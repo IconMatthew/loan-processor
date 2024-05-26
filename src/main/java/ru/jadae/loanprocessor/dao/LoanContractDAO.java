@@ -9,6 +9,8 @@ import ru.jadae.loanprocessor.entities.LoanApplication;
 import ru.jadae.loanprocessor.entities.LoanContract;
 import ru.jadae.loanprocessor.service.LoanContractService;
 
+import java.util.List;
+
 @Repository
 public class LoanContractDAO {
     @Autowired
@@ -34,5 +36,12 @@ public class LoanContractDAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("select l from LoanContract l where l.id = :id", LoanContract.class)
                 .setParameter("id", id).getSingleResult();
+    }
+
+    public List<LoanContract> getAllSignedContracts() {
+        Session session = sessionFactory.getCurrentSession();
+        return session
+                .createQuery("select l from LoanContract l where l.signatureStatus = true", LoanContract.class)
+                .list();
     }
 }

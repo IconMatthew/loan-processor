@@ -8,6 +8,7 @@ import ru.jadae.loanprocessor.entities.LoanApplication;
 import ru.jadae.loanprocessor.entities.LoanContract;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,4 +35,7 @@ public class LoanContractService {
         return loanContractDAO.getById(id);
     }
 
+    public List<LoanContract> getAllSignedContracts() {
+        return loanContractDAO.getAllSignedContracts();
+    }
 }
