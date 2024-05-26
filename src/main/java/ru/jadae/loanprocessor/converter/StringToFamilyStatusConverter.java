@@ -2,15 +2,15 @@ package ru.jadae.loanprocessor.converter;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import ru.jadae.loanprocessor.enums.Gender;
+import ru.jadae.loanprocessor.enums.FamilyStatus;
 
 @Component
-public class StringToGenderConverter implements Converter<String, Gender> {
+public class StringToFamilyStatusConverter implements Converter<String, FamilyStatus> {
 
     @Override
-    public Gender convert(String source) {
+    public FamilyStatus convert(String source) {
         try {
-            return Gender.valueOf(source.toUpperCase());
+            return FamilyStatus.valueOf(source.toUpperCase());
         } catch (IllegalArgumentException e) {
             return null;
         }

@@ -8,13 +8,13 @@
 <body>
 
 <style>
-    body{
+    body {
         font-family: 'Montserrat', sans-serif;
         color: darkslateblue;
         font-weight: 500;
     }
 
-    .col2{
+    .col2 {
         height: 550px;
         display: flex;
         flex-direction: column;
@@ -25,7 +25,7 @@
         background-color: cornflowerblue;
     }
 
-    input[type="text"], input[type="number"]{
+    input[type="text"], input[type="number"] {
         height: 30px;
         width: 200px;
         font-size: 14px;
@@ -35,13 +35,13 @@
         color: black;
     }
 
-    .wrapper{
+    .wrapper {
         width: 700px;
         margin: auto;
         margin-top: 10%
     }
 
-    h1{
+    h1 {
         font-size: 25px;
         color: white;
     }
@@ -51,21 +51,21 @@
         border: 1px solid black;
     }
 
-    input:focus{
+    input:focus {
         border: 1px solid blue;
     }
 
-    .listElem{
+    .listElem {
         display: flex;
-        flex-direction: column
+        flex-direction: column;
     }
 
-    label{
+    label {
         margin-bottom: 5px;
         margin-left: 5px;
     }
 
-    .listElemLast button{
+    .listElemLast button {
         height: 30px;
         width: 200px;
         font-size: 14px;
@@ -75,7 +75,7 @@
         background-color: darkslateblue;
     }
 
-    a{
+    a {
         line-height: 35px;
         font-weight: 500;
         color: black;
@@ -83,20 +83,20 @@
         font-size: 15px;
     }
 
-    a:hover{
+    a:hover {
         color: cornflowerblue;
     }
 
-    .linker a{
+    .linker a {
         padding: 15px;
     }
 
-    .linker{
+    .linker {
         background-color: white;
         border-radius: 20px;
     }
 
-    .lineClass{
+    .lineClass {
         color: white;
         display: flex;
         flex-direction: row;
@@ -104,11 +104,11 @@
         height: 40px;
     }
 
-    .lineClass div{
+    .lineClass div {
         padding-right: 3px;
     }
 
-    .butt{
+    .butt {
         height: 35px;
         background-color: darkslateblue;
         border-radius: 10px;
@@ -116,7 +116,7 @@
         width: 170px;
     }
 
-    .butt:hover{
+    .butt:hover {
         opacity: 0.9;
     }
 </style>
@@ -161,10 +161,10 @@
             </div>
             <div class="lineClass">
                 <div>
-                    Пол:
+                    Семейное положение:
                 </div>
                 <div>
-                    {{client.gender}}
+                    {{client.familyStatus}}
                 </div>
             </div>
             <div class="lineClass">

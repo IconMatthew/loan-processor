@@ -4,10 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.jadae.loanprocessor.entities.Client;
-import ru.jadae.loanprocessor.entities.LoanApplication;
 import ru.jadae.loanprocessor.entities.LoanContract;
-import ru.jadae.loanprocessor.service.LoanContractService;
 
 import java.util.List;
 

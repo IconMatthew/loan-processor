@@ -3,19 +3,19 @@ package ru.jadae.loanprocessor.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import ru.jadae.loanprocessor.converter.StringToGenderConverter;
+import ru.jadae.loanprocessor.converter.StringToFamilyStatusConverter;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    private final StringToGenderConverter stringToGenderConverter;
+    private final StringToFamilyStatusConverter stringToFamilyStatusConverter;
 
-    public WebConfig(StringToGenderConverter stringToGenderConverter) {
-        this.stringToGenderConverter = stringToGenderConverter;
+    public WebConfig(StringToFamilyStatusConverter stringToFamilyStatusConverter) {
+        this.stringToFamilyStatusConverter = stringToFamilyStatusConverter;
     }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(stringToGenderConverter);
+        registry.addConverter(stringToFamilyStatusConverter);
     }
 }

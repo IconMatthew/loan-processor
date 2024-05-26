@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.jadae.loanprocessor.entities.Client;
 import ru.jadae.loanprocessor.entities.LoanApplication;
 import ru.jadae.loanprocessor.entities.LoanContract;
-import ru.jadae.loanprocessor.enums.Gender;
+import ru.jadae.loanprocessor.enums.FamilyStatus;
 import ru.jadae.loanprocessor.service.ClientService;
 import ru.jadae.loanprocessor.service.LoanApplicationService;
 import ru.jadae.loanprocessor.service.LoanContractService;
@@ -42,13 +42,12 @@ public class LoanApplicationController {
 
         if (bindingResult.hasErrors()) {
 
-            for (ObjectError error: bindingResult.getAllErrors()) {
-                if (error instanceof FieldError){
-                    FieldError fieldError = (FieldError) error;
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                if (error instanceof FieldError fieldError) {
 
-                    if (fieldError.getField().equals("phoneNumber")){
+                    if (fieldError.getField().equals("phoneNumber")) {
                         client.setPhoneNumber("");
-                    } else if (fieldError.getField().equals("idData")){
+                    } else if (fieldError.getField().equals("idData")) {
                         client.setIdData("");
                     }
                 }
@@ -58,14 +57,15 @@ public class LoanApplicationController {
                     .map(ObjectError::getDefaultMessage)
                     .collect(Collectors.toList());
 
-            model.addAttribute("isWoman", client.getGender() == Gender.FEMALE);
+            model.addAttribute("isSingle", client.getFamilyStatus() == FamilyStatus.SINGLE);
+            model.addAttribute("isMarried", client.getFamilyStatus() == FamilyStatus.MARRIED);
+            model.addAttribute("isDivorced", client.getFamilyStatus() == FamilyStatus.DIVORCED);
             model.addAttribute("errors", errors);
-            model.addAttribute(client);
+            model.addAttribute("client", client);
             return "loan-application";
         }
 
         clientService.applyLoan(client);
-
         LoanApplication loanApplication = loanApplicationService.createNewLoanApplication(client);
 
         if (loanApplication.getStatus()) {
@@ -78,6 +78,7 @@ public class LoanApplicationController {
             return "loan-application-rejected";
         }
     }
+
 
     @GetMapping("/show-all-applications")
     public String showAllApplications(Model model){

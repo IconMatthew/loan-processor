@@ -106,11 +106,13 @@
                 <input type="text" name="idData" placeholder="#### ######" {{#client.idData}}value="{{client.idData}}"{{/client.idData}} required>
             </div>
             <div>
-                <label>Гендер:</label>
-                <input type="radio" id="maleOption" name="gender" value="MALE" required {{^isWoman}}checked{{/isWoman}}>
-                <label for="maleOption">Male</label>
-                <input type="radio" id="femaleOption" name="gender" value="FEMALE" required {{#isWoman}}checked{{/isWoman}}>
-                <label for="femaleOption">Female</label>
+                <label>Семейное положение:</label>
+                <input type="radio" id="singleOption" name="familyStatus" value="SINGLE" required {{#isSingle}}checked{{/isSingle}}>
+                <label for="singleOption">Single</label>
+                <input type="radio" id="marriedOption" name="familyStatus" value="MARRIED" required {{#isMarried}}checked{{/isMarried}}>
+                <label for="marriedOption">Married</label>
+                <input type="radio" id="divorcedOption" name="familyStatus" value="DIVORCED" required {{#isDivorced}}checked{{/isDivorced}}>
+                <label for="divorcedOption">Divorced</label>
             </div>
             <div class="listElem">
                 <label>Адрес прописки:</label>

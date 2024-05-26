@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.ToString;
-import ru.jadae.loanprocessor.enums.Gender;
+import ru.jadae.loanprocessor.enums.FamilyStatus;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -27,8 +27,8 @@ public class Client {
     private String idData;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "gender", nullable = false)
-    private Gender gender;
+    @Column(name = "familyStatus", nullable = false)
+    private FamilyStatus familyStatus;
 
     @Column(name = "address", nullable = false)
     private String address;
