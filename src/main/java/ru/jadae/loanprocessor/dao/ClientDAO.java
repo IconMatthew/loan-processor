@@ -32,4 +32,33 @@ public class ClientDAO {
         return session.createQuery("select c from Client c where idData like :idData", Client.class)
                 .setParameter("idData", idData).getSingleResult();
     }
+
+    public List<Client> findByFilters(String idData, String phoneNumber, String fullName) {
+        StringBuilder hql = new StringBuilder("FROM Client WHERE 1=1");
+        if (idData != null && !idData.isEmpty()) {
+            hql.append(" AND idData = :idData");
+        }
+        if (phoneNumber != null && !phoneNumber.isEmpty()) {
+            hql.append(" AND phoneNumber = :phoneNumber");
+        }
+        if (fullName != null && !fullName.isEmpty()) {
+            hql.append(" AND fullName = :fullName");
+        }
+
+        Session session = sessionFactory.getCurrentSession();
+
+        var query = session.createQuery(hql.toString(), Client.class);
+
+        if (idData != null && !idData.isEmpty()) {
+            query.setParameter("idData", idData);
+        }
+        if (phoneNumber != null && !phoneNumber.isEmpty()) {
+            query.setParameter("phoneNumber", phoneNumber);
+        }
+        if (fullName != null && !fullName.isEmpty()) {
+            query.setParameter("fullName", fullName);
+        }
+
+        return query.list();
+    }
 }

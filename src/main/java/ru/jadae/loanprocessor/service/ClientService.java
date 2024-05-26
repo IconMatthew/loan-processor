@@ -1,11 +1,9 @@
 package ru.jadae.loanprocessor.service;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.jadae.loanprocessor.dao.ClientDAO;
-import ru.jadae.loanprocessor.dao.LoanApplicationDAO;
 import ru.jadae.loanprocessor.entities.Client;
 
 import java.util.List;
@@ -29,5 +27,7 @@ public class ClientService {
         return clientDAO.getAllClients();
     }
 
-
+    public List<Client> clientsByFilters(String idData, String phoneNumber, String fullName) {
+        return clientDAO.findByFilters(idData, phoneNumber, fullName);
+    }
 }
