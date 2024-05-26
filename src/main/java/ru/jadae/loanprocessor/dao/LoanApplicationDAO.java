@@ -4,10 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.jadae.loanprocessor.entities.Client;
 import ru.jadae.loanprocessor.entities.LoanApplication;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @Repository
 public class LoanApplicationDAO {
@@ -21,5 +20,10 @@ public class LoanApplicationDAO {
         session.persist(loanApplication);
         session.getTransaction().commit();
         return loanApplication;
+    }
+
+    public List<LoanApplication> getAllApplications() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("select l from LoanApplication l", LoanApplication.class).list();
     }
 }

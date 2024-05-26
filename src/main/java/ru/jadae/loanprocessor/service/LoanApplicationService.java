@@ -7,6 +7,7 @@ import ru.jadae.loanprocessor.dao.LoanApplicationDAO;
 import ru.jadae.loanprocessor.entities.Client;
 import ru.jadae.loanprocessor.entities.LoanApplication;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -30,5 +31,9 @@ public class LoanApplicationService {
         }
 
         return loanApplicationDAO.saveApplication(loanApplication);
+    }
+
+    public List<LoanApplication> getAllApplications() {
+        return loanApplicationDAO.getAllApplications();
     }
 }

@@ -1,6 +1,8 @@
 package ru.jadae.loanprocessor.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
@@ -24,7 +26,8 @@ public class LoanApplication {
     private Boolean status;
 
     @Column(name="term")
-    @Size(min=1, max = 360)
+    @Min(value = 1)
+    @Max(value = 360)
     private Integer term;
 
     @Column(name = "approvedAmount", precision = 19, scale = 2)
