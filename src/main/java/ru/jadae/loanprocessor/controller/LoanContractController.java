@@ -25,7 +25,7 @@ public class LoanContractController {
             loanContractService.setContractSigned(loanContract);
             return "loan-contract-signed";
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Кредит не одобрен!");
         }
     }
 
