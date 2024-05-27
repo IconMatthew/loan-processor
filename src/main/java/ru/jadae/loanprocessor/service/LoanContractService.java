@@ -23,11 +23,11 @@ public class LoanContractService {
         return loanContractDAO.saveContract(loanContract);
     }
 
-    public LoanContract setContractSigned(LoanContract loanContract){
+    public void setContractSigned(LoanContract loanContract){
 
         loanContract.setSignatureStatus(true);
         loanContract.setSignatureDate(new Date());
-        return loanContractDAO.saveContract(loanContract);
+        loanContractDAO.saveContract(loanContract);
     }
 
     public LoanContract getLoanContractById(Long id){
