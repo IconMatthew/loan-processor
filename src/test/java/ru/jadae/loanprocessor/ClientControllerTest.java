@@ -31,7 +31,6 @@ public class ClientControllerTest {
     private ClientService clientService;
 
     private final Client client1 = Mockito.mock(Client.class);
-    private final Client client2 = Mockito.mock(Client.class);
     @Test
     void testShowAllClients() throws Exception {
         List<Client> clients = new ArrayList<>();
