@@ -26,8 +26,6 @@ public class LoanApplicationService {
         if (loanApplication.getStatus()){
             loanApplication.setTerm(random.nextInt(1, 360));
             loanApplication.setApprovedAmount(client.getLoanAmount());
-
-            loanApplicationDAO.saveApplication(loanApplication);
         }
 
         return loanApplicationDAO.saveApplication(loanApplication);
